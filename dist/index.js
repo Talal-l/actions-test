@@ -8470,12 +8470,13 @@ try {
   //const payload = JSON.stringify(github.context.payload, undefined, 2);
   //console.log(`The event payload: ${payload}`);
 
-  let subtrees = `git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'`;
+  let subtrees = (/* unused pure expression or super */ null && (`git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'`));
 
-  let subRepos = execSync(subtrees).toString().split(" ");
+  //let subRepos = execSync(subtrees).toString().split(" ");
+  let subRepos = ["sub-test"];
   subRepos = subRepos.map((e) => e.replace("\n", ""));
   for (let name of subRepos) {
-    let r = pushSub(name, "git@p.github.com:Talal-l/sub-test.git");
+    let r = pushSub(name, "git@github.com:Talal-l/sub-test.git");
     console.log("repo:", name, r);
   }
 

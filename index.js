@@ -20,7 +20,8 @@ try {
 
   let subtrees = `git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'`;
 
-  let subRepos = execSync(subtrees).toString().split(" ");
+  //let subRepos = execSync(subtrees).toString().split(" ");
+  let subRepos = ["sub-test"];
   subRepos = subRepos.map((e) => e.replace("\n", ""));
   for (let name of subRepos) {
     let r = pushSub(name, "git@github.com:Talal-l/sub-test.git");
