@@ -8289,6 +8289,14 @@ module.exports = require("assert");
 
 /***/ }),
 
+/***/ 2081:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
+
+/***/ }),
+
 /***/ 2361:
 /***/ ((module) => {
 
@@ -8444,6 +8452,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(5127);
 const github = __nccwpck_require__(3134);
+const { execSync } = __nccwpck_require__(2081);
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -8452,8 +8461,11 @@ try {
   const time = new Date().toTimeString();
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
-  console.log(`The event payload: ${payload}`);
+  //const payload = JSON.stringify(github.context.payload, undefined, 2);
+  //console.log(`The event payload: ${payload}`);
+
+  let gitOut = execSync("git status");
+  console.log("git", gitOut.toString());
 } catch (error) {
   core.setFailed(error.message);
 }
