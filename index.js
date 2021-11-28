@@ -19,6 +19,7 @@ try {
   //console.log(`The event payload: ${payload}`);
 
   let subtrees = `git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'`;
+  return;
 
   //let subRepos = execSync(subtrees).toString().split(" ");
   let subRepos = ["sub-test"];
