@@ -3,6 +3,9 @@ const github = require("@actions/github");
 const { execSync } = require("child_process");
 
 function pushSub(name, url) {
+  let split = `git subtree split --prefix ${name} -b ${name}`;
+  let push = `git push  -f $url $name:main`;
+  let deleteB = `git branch -D $name`;
   let cmd = `git subtree push --prefix=${name} ${url} main`;
   let res = execSync(cmd);
   return res.toString();
@@ -19,7 +22,6 @@ try {
   //console.log(`The event payload: ${payload}`);
 
   let subtrees = `git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'`;
-  return;
 
   //let subRepos = execSync(subtrees).toString().split(" ");
   let subRepos = ["sub-test"];
