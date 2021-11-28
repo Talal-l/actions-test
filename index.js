@@ -23,7 +23,7 @@ try {
   let subRepos = execSync(subtrees).toString().split(" ");
   subRepos = subRepos.map((e) => e.replace("\n", ""));
   for (let name of subRepos) {
-    let r = pushSub(name, "git@p.github.com:Talal-l/sub-test.git");
+    let r = pushSub(name, "git@github.com:Talal-l/sub-test.git");
     console.log("repo:", name, r);
   }
 
