@@ -4,8 +4,8 @@ const { execSync } = require("child_process");
 
 function pushSub(name, url) {
   let split = `git subtree split --prefix ${name} -b ${name}`;
-  let push = `git push  -f $url $name:main`;
-  let deleteB = `git branch -D $name`;
+  let push = `git push  -f ${url} ${name}:main`;
+  let deleteB = `git branch -D ${name}`;
   let cmd = `${split} && ${push} && ${deleteB}`;
   let res = execSync(cmd);
   return res.toString();
